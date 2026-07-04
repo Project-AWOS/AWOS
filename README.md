@@ -159,22 +159,6 @@ pip install -r requirements.txt
 
 ---
 
-## 🔑 Environment Variables
-
-Create a `.env` file.
-
-```env
-SLACK_BOT_TOKEN=
-SLACK_APP_TOKEN=
-SLACK_SIGNING_SECRET=
-
-GOOGLE_API_KEY=
-
-DATABASE_URL=sqlite:///awos.db
-```
-
----
-
 ## ▶️ Run the Project
 
 Start FastAPI
