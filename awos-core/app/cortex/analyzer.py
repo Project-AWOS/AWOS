@@ -23,14 +23,14 @@ Genesis v1.0
 
 import re
 import string
-from typing import Dict, List
+from typing import List
 from app.models.analysis import MissionAnalysis
 
 # =========================================================
 # Common words that are ignored while extracting keywords.
 # =========================================================
 
-STOP_WORDS = {
+STOP_WORDS: set[str] = {
     "a",
     "an",
     "and",
@@ -152,7 +152,7 @@ def extract_keywords(text: str) -> List[str]:
     # Split text into individual words
     words = text.split()
 
-    keywords = []
+    keywords: List[str] = []
 
     for word in words:
 
