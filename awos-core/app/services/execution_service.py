@@ -35,12 +35,21 @@ def execute_mission(
     """
 
     state = {
-        "mission": mission,
-        "analysis": None,
-        "classification": None,
-        "reasoning": None,
-        "plan": None,
-    }
+    "mission": mission,
+
+    "analysis": None,
+    "classification": None,
+    "reasoning": None,
+
+    "decision": None,
+
+    "research": None,
+    "engineering": None,
+    "qa": None,
+    "approval": None,
+
+    "plan": None,
+}
 
     result = workflow.invoke(state)
 

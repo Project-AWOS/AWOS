@@ -20,6 +20,11 @@ Version
 Genesis v1.0
 =========================================================
 """
+from app.agents.ceo import CEOAgent
+from app.agents.research import ResearchAgent
+from app.agents.engineer import EngineerAgent
+from app.agents.qa import QAAgent
+from app.agents.approval import ApprovalAgent
 
 from app.graph.state import MissionState
 
@@ -71,5 +76,57 @@ def planner_node(state: MissionState) -> MissionState:
     state["plan"] = create_execution_plan(
         state["reasoning"]
     )
+
+    return state
+
+def ceo_node(state: MissionState) -> MissionState:
+    """
+    Execute CEO decision.
+    """
+
+    state["decision"] = CEOAgent().decide(
+        state["analysis"],
+        state["classification"],
+    )
+
+    return state
+
+def research_node(state: MissionState) -> MissionState:
+    """
+    Execute Research Agent.
+    """
+
+    state["research"] = ResearchAgent().execute(
+        state["mission"]
+    )
+
+    return state
+
+def engineer_node(state: MissionState) -> MissionState:
+    """
+    Execute Engineer Agent.
+    """
+
+    state["engineering"] = EngineerAgent().execute(
+        state["mission"]
+    )
+
+    return state
+
+def qa_node(state: MissionState) -> MissionState:
+    """
+    Execute QA Agent.
+    """
+
+    state["qa"] = QAAgent().execute()
+
+    return state
+
+def approval_node(state: MissionState) -> MissionState:
+    """
+    Execute Approval Agent.
+    """
+
+    state["approval"] = ApprovalAgent().request()
 
     return state
