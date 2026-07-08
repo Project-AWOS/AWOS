@@ -22,6 +22,8 @@ Genesis v1.0
 
 from pydantic import BaseModel
 
+from app.mcp.manager import mcp_manager
+
 
 class EngineerResult(BaseModel):
     completed: bool
@@ -32,17 +34,29 @@ class EngineerAgent:
     """
     Engineer Agent.
 
-    Currently uses mock actions.
-    Later this agent will call the GitHub MCP server.
+    Uses GitHub MCP to perform engineering tasks.
     """
 
-    def execute(self, mission: str) -> EngineerResult:
+    async def execute(self, mission: str) -> EngineerResult:
+
+        repo_result = await mcp_manager.call(
+            server="github",
+            tool="create_github_repository",
+            arguments={
+                "repo_name": "awos-demo-repository",
+                "description": f"Repository generated for mission: {mission}",
+                "private": False,
+            },
+        )
+
+        actions = [
+            "Engineering workflow started.",
+            f"GitHub MCP executed tool: {repo_result['tool']}",
+            "Repository creation request submitted.",
+            "Ready for implementation.",
+        ]
 
         return EngineerResult(
             completed=True,
-            actions=[
-                "Project structure created.",
-                "Source files generated.",
-                "Ready for GitHub MCP integration.",
-            ],
+            actions=actions,
         )

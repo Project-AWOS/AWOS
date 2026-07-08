@@ -23,6 +23,8 @@ Genesis v1.0
 
 from pydantic import BaseModel
 
+from app.mcp.manager import mcp_manager
+
 
 class ResearchResult(BaseModel):
     completed: bool
@@ -32,15 +34,30 @@ class ResearchResult(BaseModel):
 class ResearchAgent:
     """
     Research Agent.
+
+    Uses the GitHub MCP server to gather
+    repositories and technical context.
     """
 
-    def execute(self, mission: str) -> ResearchResult:
+    async def execute(self, mission: str) -> ResearchResult:
+
+        github_result = await mcp_manager.call(
+            server="github",
+            tool="search_repository",
+            arguments={
+                "query": mission,
+                "limit": 5,
+            },
+        )
+
+        notes = [
+            "Mission requirements analyzed.",
+            f"GitHub MCP executed tool: {github_result['tool']}",
+            f"Search query: {mission}",
+            "Repository research completed.",
+        ]
 
         return ResearchResult(
             completed=True,
-            notes=[
-                "Mission requirements analyzed.",
-                "Technology stack identified.",
-                "Relevant documentation collected.",
-            ],
+            notes=notes,
         )
