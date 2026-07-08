@@ -55,14 +55,13 @@ def classifier_node(state: MissionState) -> MissionState:
     return state
 
 
-def reasoner_node(state: MissionState) -> MissionState:
+async def research_node(state: MissionState) -> MissionState:
     """
-    Run Gemini reasoning.
+    Execute Research Agent.
     """
 
-    state["reasoning"] = MissionReasoner().reason(
-        state["analysis"],
-        state["classification"],
+    state["research"] = await ResearchAgent().execute(
+        state["mission"]
     )
 
     return state
@@ -79,6 +78,7 @@ def planner_node(state: MissionState) -> MissionState:
 
     return state
 
+
 def ceo_node(state: MissionState) -> MissionState:
     """
     Execute CEO decision.
@@ -91,6 +91,7 @@ def ceo_node(state: MissionState) -> MissionState:
 
     return state
 
+
 def research_node(state: MissionState) -> MissionState:
     """
     Execute Research Agent.
@@ -102,25 +103,30 @@ def research_node(state: MissionState) -> MissionState:
 
     return state
 
-def engineer_node(state: MissionState) -> MissionState:
+
+async def engineer_node(state: MissionState) -> MissionState:
     """
     Execute Engineer Agent.
     """
 
-    state["engineering"] = EngineerAgent().execute(
-        state["mission"]
+    state["engineering"] = await EngineerAgent().execute(
+        repo_name="awos-langgraph-demo",
+        description=state["mission"],
+        owner="manaswitha7",
     )
 
     return state
 
-def qa_node(state: MissionState) -> MissionState:
+
+async def qa_node(state: MissionState) -> MissionState:
     """
     Execute QA Agent.
     """
 
-    state["qa"] = QAAgent().execute()
+    state["qa"] = await QAAgent().execute()
 
     return state
+
 
 def approval_node(state: MissionState) -> MissionState:
     """

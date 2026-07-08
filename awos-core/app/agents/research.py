@@ -41,7 +41,7 @@ class ResearchAgent:
 
     async def execute(self, mission: str) -> ResearchResult:
 
-        github_result = await mcp_manager.call(
+        github = await mcp_manager.call(
             server="github",
             tool="search_repository",
             arguments={
@@ -50,12 +50,23 @@ class ResearchAgent:
             },
         )
 
-        notes = [
-            "Mission requirements analyzed.",
-            f"GitHub MCP executed tool: {github_result['tool']}",
-            f"Search query: {mission}",
-            "Repository research completed.",
-        ]
+        notes = []
+
+        if github["status"] == "success":
+
+            notes.append(
+                f"Found {github['count']} repositories."
+            )
+
+            for repo in github["repositories"]:
+
+                notes.append(
+                    f"{repo['name']} ({repo['stars']}⭐)"
+                )
+
+        else:
+
+            notes.append("GitHub search failed.")
 
         return ResearchResult(
             completed=True,

@@ -50,8 +50,9 @@ def delete(mission_id: str):
         "message": "Mission deleted successfully"
     }
 
+
 @router.post("/{mission_id}/execute")
-def execute(mission_id: str):
+async def execute(mission_id: str):
 
     mission = get_mission(mission_id)
 
@@ -61,7 +62,7 @@ def execute(mission_id: str):
             detail="Mission not found",
         )
 
-    plan = execute_mission(
+    plan = await execute_mission(
         mission["objective"]
     )
 
