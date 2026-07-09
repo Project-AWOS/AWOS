@@ -9,5 +9,11 @@ app = App(token=SLACK_BOT_TOKEN)
 register_listeners(app)
 
 if __name__ == "__main__":
-    print("🚀 AWOS Slack App Started!")
-    SocketModeHandler(app, SLACK_APP_TOKEN).start()
+    print("=" * 50)
+    print("🚀 AWOS Mission Control Started")
+    print("=" * 50)
+
+    SocketModeHandler(
+        app,
+        SLACK_APP_TOKEN
+    ).start()
