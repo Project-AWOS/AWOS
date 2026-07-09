@@ -70,8 +70,14 @@ def reasoner_node(state: MissionState) -> MissionState:
 
 async def research_node(state: MissionState) -> MissionState:
     """
-    Execute Research Agent.
+    Execute Research Agent only if approved by CEO.
     """
+
+    if not state["decision"].use_research:
+        print("CEO -> Research Agent : SKIPPED")
+        return state
+
+    print("CEO -> Research Agent : EXECUTE")
 
     state["research"] = await ResearchAgent().execute(
         state["mission"]
@@ -107,8 +113,14 @@ def ceo_node(state: MissionState) -> MissionState:
 
 async def engineer_node(state: MissionState) -> MissionState:
     """
-    Execute Engineer Agent.
+    Execute Engineer Agent only if approved by CEO.
     """
+
+    if not state["decision"].use_engineer:
+        print("CEO -> Engineer Agent : SKIPPED")
+        return state
+
+    print("CEO -> Engineer Agent : EXECUTE")
 
     state["engineering"] = await EngineerAgent().execute(
         repo_name="awos-langgraph-demo",
@@ -121,8 +133,14 @@ async def engineer_node(state: MissionState) -> MissionState:
 
 async def qa_node(state: MissionState) -> MissionState:
     """
-    Execute QA Agent.
+    Execute QA Agent only if approved by CEO.
     """
+
+    if not state["decision"].use_qa:
+        print("CEO -> QA Agent : SKIPPED")
+        return state
+
+    print("CEO -> QA Agent : EXECUTE")
 
     state["qa"] = await QAAgent().execute()
 

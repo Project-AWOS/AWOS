@@ -1,13 +1,47 @@
-from pydantic import BaseModel
+"""
+=========================================================
+Module      : decision.py
+
+System      : AWOS
+
+Component   : Models
+
+Purpose
+-------
+Stores the decision made by the CEO Agent
+after reviewing the mission.
+
+Author
+------
+Project AWOS Team
+
+Version
+-------
+Genesis v2.0
+=========================================================
+"""
+
+from pydantic import BaseModel, Field
 
 
 class AgentDecision(BaseModel):
+    """
+    Decision returned by the CEO Agent.
+    """
+
+    # Mission summary
     summary: str
 
-    use_research: bool
-    use_engineer: bool
-    use_qa: bool
+    # Which agents should execute
+    use_research: bool = False
+    use_engineer: bool = False
+    use_qa: bool = False
 
-    requires_approval: bool
+    # Human approval required?
+    requires_approval: bool = False
 
-    tools: list[str]
+    # MCP tools expected to be used
+    tools: list[str] = Field(default_factory=list)
+
+    # Why CEO made this decision
+    reason: str
