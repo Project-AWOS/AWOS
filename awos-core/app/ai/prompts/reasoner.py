@@ -1,14 +1,14 @@
 """
 =========================================================
-Module      : research.py
+Module      : reasoner.py
 
 System      : AWOS
 
-Component   : Research Prompt
+Component   : Reasoner Prompt
 
 Purpose
 -------
-Builds the prompt used by the Research Agent.
+Builds the prompt used by the Mission Reasoner.
 
 Author
 ------
@@ -20,35 +20,59 @@ Genesis v1.0
 =========================================================
 """
 
-def build_research_prompt(mission: str) -> str:
+from app.models.analysis import MissionAnalysis
+from app.models.classification import MissionClassification
+
+
+def build_reasoner_prompt(
+    analysis: MissionAnalysis,
+    classification: MissionClassification,
+) -> str:
     """
-    Build the Research Agent prompt.
+    Build the Gemini reasoning prompt.
     """
 
     return f"""
-You are the Research Agent of AWOS.
+You are the Chief Reasoning Engine of AWOS.
 
-Your responsibilities are:
+Your responsibility is to determine the best execution
+strategy for the mission.
 
-1. Understand the mission.
-2. Identify relevant technologies.
-3. List useful frameworks and tools.
-4. Identify possible implementation challenges.
+Mission Analysis
 
-Mission
+Objective:
+{analysis.objective}
 
-{mission}
+Priority:
+{analysis.priority}
+
+Complexity:
+{analysis.complexity}
+
+Mission Classification
+
+Category:
+{classification.category}
+
+Requires AI:
+{classification.requires_ai}
+
+Requires Research:
+{classification.requires_research}
 
 Return ONLY valid JSON.
 
 Example:
 
 {{
-    "completed": true,
-    "notes": [
-        "...",
-        "...",
-        "..."
-    ]
+    "summary": "...",
+    "approach": "...",
+    "required_agents": [
+        "Research",
+        "Engineer",
+        "QA"
+    ],
+    "estimated_steps": 5,
+    "risk": "Low"
 }}
 """
