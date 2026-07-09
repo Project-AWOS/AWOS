@@ -55,6 +55,19 @@ def classifier_node(state: MissionState) -> MissionState:
     return state
 
 
+def reasoner_node(state: MissionState) -> MissionState:
+    """
+    Run Gemini reasoning.
+    """
+
+    state["reasoning"] = MissionReasoner().reason(
+        state["analysis"],
+        state["classification"],
+    )
+
+    return state
+
+
 async def research_node(state: MissionState) -> MissionState:
     """
     Execute Research Agent.
@@ -87,18 +100,6 @@ def ceo_node(state: MissionState) -> MissionState:
     state["decision"] = CEOAgent().decide(
         state["analysis"],
         state["classification"],
-    )
-
-    return state
-
-
-def research_node(state: MissionState) -> MissionState:
-    """
-    Execute Research Agent.
-    """
-
-    state["research"] = ResearchAgent().execute(
-        state["mission"]
     )
 
     return state

@@ -8,7 +8,7 @@ Component   : QA Agent
 
 Purpose
 -------
-Validates the execution results before deployment.
+Validates engineering results before deployment.
 
 Author
 ------
@@ -35,8 +35,9 @@ class QAAgent:
     """
     QA Agent.
 
-    Uses GitHub MCP to validate
-    engineering results.
+    Validates that the GitHub MCP server
+    is available and engineering artifacts
+    can be verified.
     """
 
     async def execute(self) -> QAResult:
@@ -49,7 +50,9 @@ class QAAgent:
 
         feedback = [
             "Mission validated successfully.",
-            f"GitHub MCP executed tool: {validation['tool']}",
+            f"Connected to: {validation['server']}",
+            f"Server Version: {validation['version']}",
+            f"Available Tools: {len(validation['tools'])}",
             "Repository validation completed.",
             "Ready for deployment.",
         ]

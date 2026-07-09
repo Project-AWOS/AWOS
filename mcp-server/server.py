@@ -9,8 +9,6 @@ from github_mcp.update_file import update_file
 from github_mcp.pull_request import create_pull_request
 
 
-print("Starting AWOS GitHub MCP Server...")
-
 mcp = FastMCP("AWOS GitHub MCP Server")
 
 
@@ -176,8 +174,6 @@ def server_info():
         ]
     }
 
-
-print("Server initialized. Waiting for MCP client...")
 
 if __name__ == "__main__":
     mcp.run()

@@ -29,50 +29,93 @@ def build_reasoner_prompt(
     classification: MissionClassification,
 ) -> str:
     """
-    Build the Gemini reasoning prompt.
+    Build the prompt for Gemini.
     """
 
     return f"""
 You are the Chief Reasoning Engine of AWOS.
 
-Your responsibility is to determine the best execution
-strategy for the mission.
+Your responsibility is to determine the best strategy
+for executing the mission.
 
-Mission Analysis
+========================
+MISSION ANALYSIS
+========================
 
-Objective:
-{analysis.objective}
+Original Mission
 
-Priority:
-{analysis.priority}
+{analysis.original_text}
 
-Complexity:
-{analysis.complexity}
+Normalized Mission
 
-Mission Classification
+{analysis.normalized_text}
 
-Category:
+Word Count
+
+{analysis.word_count}
+
+Sentence Count
+
+{analysis.sentence_count}
+
+Keywords
+
+{", ".join(analysis.keywords)}
+
+========================
+MISSION CLASSIFICATION
+========================
+
+Domain
+
+{classification.domain}
+
+Category
+
 {classification.category}
 
-Requires AI:
-{classification.requires_ai}
+Complexity
 
-Requires Research:
-{classification.requires_research}
+{classification.complexity}
+
+========================
 
 Return ONLY valid JSON.
 
-Example:
+The JSON MUST follow EXACTLY this schema.
 
 {{
-    "summary": "...",
-    "approach": "...",
+    "summary": "Brief summary of the mission",
+
     "required_agents": [
         "Research",
         "Engineer",
         "QA"
     ],
-    "estimated_steps": 5,
-    "risk": "Low"
+
+    "required_tools": [
+        "GitHub MCP",
+        "Filesystem MCP"
+    ],
+
+    "execution_strategy": [
+        "Research repositories",
+        "Create repository",
+        "Implement solution",
+        "Run QA validation"
+    ],
+
+    "risks": [
+        "Repository may already exist",
+        "GitHub API rate limits"
+    ],
+
+    "estimated_complexity": "Medium"
 }}
+
+Do not return markdown.
+
+Do not explain.
+
+Return ONLY valid JSON.
 """
