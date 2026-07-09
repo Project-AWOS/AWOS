@@ -21,3 +21,6 @@
 | TC013 | Research Workflow | Execute `test_research_input` | Research results generated | ✅ Passed |
 | TC014 | Integration | MCP Dependencies Installed | No missing module errors | ✅ Passed |
 | TC015 | Prompt Module | Reasoner Prompt Loaded | Backend starts successfully | ✅ Passed |
+| TC016 | Workflow | Execute `python -m tests.test_workflow` | Workflow executes successfully | ✅ Passed |
+| TC017 | MCP | Initialize MCP Session | MCP session starts successfully | ✅ Passed |
+| TC018 | AI Agents | Generate Mission Plan | Mission plan generated successfully | ✅ Passed |
