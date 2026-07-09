@@ -1,21 +1,35 @@
-# Log #001
+# 🛠 AWOS Debug Log
 
-# Issue
-The `awos-core` directory was not appearing in Git.
-Only README.md was being tracked.
+## Purpose
 
-# Cause
-The `.gitignore` inside `awos-core` contained:
-*
-which caused Git to ignore every file in that directory.
+This document records debugging activities throughout the project.
 
-# Solution
-Removed the `*` line from
-`awos-core/.gitignore`.
-Verified using:
-git status
+---
 
-# Result
-The backend files were detected and committed successfully.
+## 08 July 2026
 
+### Documentation
 
+- Created documentation folder
+- Created README
+- Created Architecture document
+- Created Workflow document
+- Created API documentation
+- Created Test Cases
+- Created User Guide
+- Created Bug Report
+
+Status: Completed
+
+---
+
+## 09 July 2026
+
+### Integration
+
+- AWOS Core tagged as **v0.8.0**
+- Integration branch created
+- Workflow testing initiated
+- MCP integration in progress
+
+Status: In Progress
