@@ -10,3 +10,14 @@
 | TC006 | Reasoner | Gemini reasoning generated | Pending |
 | TC007 | Planner | Mission plan generated | Pending |
 | TC008 | LangGraph | Workflow executed successfully | Pending |
+---
+
+## Additional Test Cases
+
+| Test ID | Module | Test | Expected Result | Status |
+|----------|---------|------|----------------|--------|
+| TC011 | GitHub MCP | Initialize MCP Session | Session starts successfully | ✅ Passed |
+| TC012 | GitHub MCP | Repository Search | Repository list returned | ✅ Passed |
+| TC013 | Research Workflow | Execute `test_research_input` | Research results generated | ✅ Passed |
+| TC014 | Integration | MCP Dependencies Installed | No missing module errors | ✅ Passed |
+| TC015 | Prompt Module | Reasoner Prompt Loaded | Backend starts successfully | ✅ Passed |

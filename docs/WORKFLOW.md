@@ -200,3 +200,60 @@ Slack Response
 - 🔄 Slack Integration
 - ⏳ Human-in-the-Loop
 - ⏳ Multi-Agent Collaboration
+---
+
+# Latest Development Progress
+
+Current Working Flow
+
+```text
+User
+
+↓
+
+Mission API
+
+↓
+
+Execution Service
+
+↓
+
+LangGraph
+
+↓
+
+Analyzer
+
+↓
+
+Classifier
+
+↓
+
+Reasoner (Gemini)
+
+↓
+
+Planner
+
+↓
+
+GitHub MCP
+
+↓
+
+Research Results
+
+↓
+
+Mission Plan
+
+↓
+
+JSON Response
+```
+
+GitHub MCP integration has been successfully tested.
+
+Slack integration is currently under development.
