@@ -1,14 +1,14 @@
 """
 =========================================================
-Module      : reasoner.py
+Module      : research.py
 
 System      : AWOS
 
-Component   : AI Prompt
+Component   : Research Prompt
 
 Purpose
 -------
-Prompt template for the CORTEX Reasoner.
+Builds the prompt used by the Research Agent.
 
 Author
 ------
@@ -20,181 +20,35 @@ Genesis v1.0
 =========================================================
 """
 
-
-def build_reasoner_prompt(
-    analysis,
-    classification,
-) -> str:
+def build_research_prompt(mission: str) -> str:
     """
-    Build the prompt sent to Gemini.
+    Build the Research Agent prompt.
     """
 
     return f"""
-You are the CORTEX Brain of AWOS.
+You are the Research Agent of AWOS.
 
-Your task is to determine how AWOS should execute this mission.
+Your responsibilities are:
 
-MISSION ANALYSIS
+1. Understand the mission.
+2. Identify relevant technologies.
+3. List useful frameworks and tools.
+4. Identify possible implementation challenges.
 
-Original Mission:
-{analysis.original_text}
+Mission
 
-Normalized Mission:
-{analysis.normalized_text}
-
-Keywords:
-{analysis.keywords}
-
-Word Count:
-{analysis.word_count}
-
-Sentence Count:
-{analysis.sentence_count}
-
-----------------------------------------
-
-MISSION CLASSIFICATION
-
-Domain:
-{classification.domain}
-
-Category:
-{classification.category}
-
-Complexity:
-{classification.complexity}
-
-----------------------------------------
+{mission}
 
 Return ONLY valid JSON.
 
-Use exactly this schema.
+Example:
 
 {{
-    "summary": "...",
-
-    "required_agents": [
-        "CEO",
-        "Research",
-        "Engineer",
-        "QA"
-    ],
-
-    "required_tools": [
-        "GitHub MCP"
-    ],
-
-    "execution_strategy": [
+    "completed": true,
+    "notes": [
         "...",
         "...",
         "..."
-    ],
-
-    "risks": [
-        "...",
-        "..."
-    ],
-
-    "estimated_complexity": "Low | Medium | High"
-}}
-"""
-"""
-=========================================================
-Module      : reasoner.py
-
-System      : AWOS
-
-Component   : AI Prompt
-
-Purpose
--------
-Prompt template for the CORTEX Reasoner.
-
-Author
-------
-Project AWOS Team
-
-Version
--------
-Genesis v1.0
-=========================================================
-"""
-
-
-def build_reasoner_prompt(
-    analysis,
-    classification,
-) -> str:
-    """
-    Build the prompt sent to Gemini.
-    """
-
-    return f"""
-You are the CORTEX Brain of AWOS.
-
-Your task is to determine how AWOS should execute this mission.
-
-MISSION ANALYSIS
-
-Original Mission:
-{analysis.original_text}
-
-Normalized Mission:
-{analysis.normalized_text}
-
-Keywords:
-{analysis.keywords}
-
-Word Count:
-{analysis.word_count}
-
-Sentence Count:
-{analysis.sentence_count}
-
-----------------------------------------
-
-MISSION CLASSIFICATION
-
-Domain:
-{classification.domain}
-
-Category:
-{classification.category}
-
-Complexity:
-{classification.complexity}
-
-----------------------------------------
-
-Return ONLY valid JSON.
-
-Use exactly this schema.
-
-{{
-    "summary": "...",
-
-    "required_agents": [
-        "CEO",
-        "Research",
-        "Engineer",
-        "QA"
-    ],
-
-    "required_tools": [
-        "GitHub MCP"
-    ],
-
-    "execution_strategy": [
-        "...",
-        "...",
-        "..."
-    ],
-
-    "risks": [
-        "...",
-        "..."
-    ],
-
-    "estimated_complexity": "Low | Medium | High"
+    ]
 }}
 """

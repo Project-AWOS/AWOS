@@ -33,3 +33,32 @@ Status: Completed
 - MCP integration in progress
 
 Status: In Progress
+# problem
+Wrong Python Environment
+
+Issue
+
+Conda Python being used.
+
+# solution
+
+Activated
+
+.venv
+
+# Verified
+
+echo $VIRTUAL_ENV
+
+# problem
+LangGraph Integration
+
+Risk
+
+Breaking execution service.
+
+# Solution
+
+Wrapped existing pipeline.
+
+No functionality changed.

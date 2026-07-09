@@ -7,6 +7,7 @@ from app.services.mission_service import (
     get_mission,
     delete_mission,
 )
+from app.services.execution_service import execute_mission
 
 router = APIRouter(
     prefix="/missions",
@@ -47,4 +48,24 @@ def delete(mission_id: str):
 
     return {
         "message": "Mission deleted successfully"
+    }
+
+@router.post("/{mission_id}/execute")
+def execute(mission_id: str):
+
+    mission = get_mission(mission_id)
+
+    if mission is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Mission not found",
+        )
+
+    plan = execute_mission(
+        mission["objective"]
+    )
+
+    return {
+        "mission": mission,
+        "execution_plan": plan,
     }
