@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.routers import mission
+
+from app.routers import mission, analytics
 
 app = FastAPI(
     title="AWOS Core",
@@ -8,6 +9,7 @@ app = FastAPI(
 )
 
 app.include_router(mission.router)
+app.include_router(analytics.router)
 
 
 @app.get("/")
