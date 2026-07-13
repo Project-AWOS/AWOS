@@ -61,4 +61,4 @@ class MissionReasoner:
 
         data = parse_json_response(response)
 
-        return MissionReasoning(**data)
+        return MissionReasoning.model_validate(data)

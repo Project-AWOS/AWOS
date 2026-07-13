@@ -21,6 +21,10 @@ Genesis v2.0
 =========================================================
 """
 
+from app.ai.gemini import GeminiClient
+from app.ai.parser import parse_json_response
+from app.ai.prompts.ceo import build_ceo_prompt
+
 from app.models.analysis import MissionAnalysis
 from app.models.classification import MissionClassification
 from app.models.decision import AgentDecision
@@ -30,16 +34,44 @@ class CEOAgent:
     """
     Chief Executive Officer Agent.
 
-    Decides which departments should
-    participate in the mission.
-
-    Currently rule-based.
-
-    Later this logic will be replaced
-    by Gemini.
+    Uses Gemini for intelligent decision-making.
+    Falls back to rule-based logic if Gemini fails.
     """
 
+    def __init__(self):
+        self.client = GeminiClient()
+
     def decide(
+        self,
+        analysis: MissionAnalysis,
+        classification: MissionClassification,
+    ) -> AgentDecision:
+
+        try:
+
+            prompt = build_ceo_prompt(
+                analysis,
+                classification,
+            )
+
+            response = self.client.generate(prompt)
+
+            data = parse_json_response(response)
+
+            return AgentDecision.model_validate(data)
+
+        except Exception as e:
+
+            print("\n========== CEO GEMINI FAILED ==========")
+            print(e)
+            print("Falling back to Rule-Based CEO.\n")
+
+            return self.rule_based_decision(
+                analysis,
+                classification,
+            )
+
+    def rule_based_decision(
         self,
         analysis: MissionAnalysis,
         classification: MissionClassification,

@@ -23,7 +23,7 @@ Genesis v1.0
 
 from app.models.analysis import MissionAnalysis
 from app.models.classification import MissionClassification
-from app.knowledge.domains import DOMAIN_KEYWORDS
+from app.knowledge.domains import DOMAIN_KEYWORDS  
 
 def detect_domain(keywords: list[str]) -> str:
     """
