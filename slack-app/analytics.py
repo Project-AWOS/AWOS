@@ -1,7 +1,10 @@
 from utils import current_time
 
 
-def execution_console_block(mission):
+def analytics_block(data):
+
+    total_agents = 5
+    ready_agents = 5
 
     return [
 
@@ -13,7 +16,7 @@ def execution_console_block(mission):
             "type": "header",
             "text": {
                 "type": "plain_text",
-                "text": "🚀 AWOS Live Mission Timeline"
+                "text": "📊 AWOS Operations Console"
             }
         },
 
@@ -23,7 +26,7 @@ def execution_console_block(mission):
                 {
                     "type": "mrkdwn",
                     "text":
-                    f"🧠 AWOS Genesis   |   ⏰ {current_time()}   |   🟡 Executing"
+                    f"🧠 AWOS Genesis   |   ⏰ {current_time()}   |   🚀 Live Operations"
                 }
             ]
         },
@@ -33,8 +36,16 @@ def execution_console_block(mission):
         },
 
         # =====================================================
-        # Mission Information
+        # Overall Health
         # =====================================================
+
+        {
+            "type": "header",
+            "text": {
+                "type": "plain_text",
+                "text": "🟢 Overall System Health"
+            }
+        },
 
         {
             "type": "section",
@@ -42,22 +53,32 @@ def execution_console_block(mission):
 
                 {
                     "type": "mrkdwn",
-                    "text": f"*📌 Mission*\n{mission['title']}"
+                    "text": "*⚙ Backend*\n🟢 Connected"
                 },
 
                 {
                     "type": "mrkdwn",
-                    "text": f"*🆔 Mission ID*\n{mission['mission_id']}"
+                    "text": "*🤖 AI Engine*\nGemini"
                 },
 
                 {
                     "type": "mrkdwn",
-                    "text": f"*🔥 Priority*\n{mission['priority']}"
+                    "text": "*🧠 CORTEX*\n🟢 Online"
                 },
 
                 {
                     "type": "mrkdwn",
-                    "text": "*⚡ Status*\nExecuting"
+                    "text": "*⚙ HELIX*\n🟢 Online"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "*📡 MCP*\n🟢 Connected"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "*❤️ Health*\nExcellent"
                 }
 
             ]
@@ -68,14 +89,14 @@ def execution_console_block(mission):
         },
 
         # =====================================================
-        # Timeline
+        # Mission Statistics
         # =====================================================
 
         {
             "type": "header",
             "text": {
                 "type": "plain_text",
-                "text": "🤖 AI Agent Timeline"
+                "text": "📈 Mission Analytics"
             }
         },
 
@@ -86,36 +107,37 @@ def execution_console_block(mission):
                 {
                     "type": "mrkdwn",
                     "text":
-                    "👑 *CEO Agent*\n"
-                    "🟢 Mission Accepted"
+                    f"*📋 Total Missions*\n{data['total_missions']}"
                 },
 
                 {
                     "type": "mrkdwn",
                     "text":
-                    "🔬 *Research Agent*\n"
-                    "🟡 Analyzing Requirements..."
+                    f"*🟢 Created*\n{data['created']}"
                 },
 
                 {
                     "type": "mrkdwn",
                     "text":
-                    "🧠 *Reasoner*\n"
-                    "⚪ Waiting"
+                    f"*⚡ Running*\n{data['running']}"
                 },
 
                 {
                     "type": "mrkdwn",
                     "text":
-                    "👨‍💻 *Engineer*\n"
-                    "⚪ Waiting"
+                    f"*✅ Completed*\n{data['completed']}"
                 },
 
                 {
                     "type": "mrkdwn",
                     "text":
-                    "🧪 *QA Agent*\n"
-                    "⚪ Waiting"
+                    f"*❌ Failed*\n{data['failed']}"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    f"*📈 Success Rate*\n{data['success_rate']}%"
                 }
 
             ]
@@ -126,65 +148,14 @@ def execution_console_block(mission):
         },
 
         # =====================================================
-        # Progress
+        # Workforce Summary
         # =====================================================
 
         {
             "type": "header",
             "text": {
                 "type": "plain_text",
-                "text": "📈 Execution Progress"
-            }
-        },
-
-        {
-            "type": "section",
-            "fields": [
-
-                {
-                    "type": "mrkdwn",
-                    "text":
-                    "*Progress*\n"
-                    "██░░░░░░░░ 20%"
-                },
-
-                {
-                    "type": "mrkdwn",
-                    "text":
-                    "*Current Stage*\n"
-                    "Research Agent"
-                },
-
-                {
-                    "type": "mrkdwn",
-                    "text":
-                    "*Estimated Time*\n"
-                    "~2 min"
-                },
-
-                {
-                    "type": "mrkdwn",
-                    "text":
-                    "*AI Engine*\n"
-                    "Gemini"
-                }
-
-            ]
-        },
-
-        {
-            "type": "divider"
-        },
-
-        # =====================================================
-        # Activity Feed
-        # =====================================================
-
-        {
-            "type": "header",
-            "text": {
-                "type": "plain_text",
-                "text": "📜 Live Activity"
+                "text": "🤖 AI Workforce"
             }
         },
 
@@ -193,10 +164,87 @@ def execution_console_block(mission):
             "text": {
                 "type": "mrkdwn",
                 "text":
-                "✅ CEO Agent accepted mission\n"
-                "🟡 Research Agent gathering context\n"
-                "⚪ Waiting for reasoning phase..."
+                f"🟢 *{ready_agents}/{total_agents} Agents Ready*"
             }
+        },
+
+        {
+            "type": "section",
+            "fields": [
+
+                {
+                    "type": "mrkdwn",
+                    "text": "👑 CEO Agent\n🟢 Ready"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "🔬 Research Agent\n🟢 Ready"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "🧠 Reasoner\n🟢 Ready"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "👨‍💻 Engineer\n🟢 Ready"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text": "🧪 QA Agent\n🟢 Ready"
+                }
+
+            ]
+        },
+
+        {
+            "type": "divider"
+        },
+
+        # =====================================================
+        # Operations Summary
+        # =====================================================
+
+        {
+            "type": "header",
+            "text": {
+                "type": "plain_text",
+                "text": "📋 Operations Summary"
+            }
+        },
+
+        {
+            "type": "section",
+            "fields": [
+
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    f"*📋 Missions*\n{data['total_missions']}"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    f"*⚡ Active*\n{data['running']}"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    f"*📈 Success*\n{data['success_rate']}%"
+                },
+
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    f"*🕒 Updated*\n{current_time()}"
+                }
+
+            ]
         },
 
         {
@@ -206,11 +254,13 @@ def execution_console_block(mission):
         {
             "type": "context",
             "elements": [
+
                 {
                     "type": "mrkdwn",
                     "text":
-                    f"🚀 Powered by AWOS Genesis • Last Updated {current_time()}"
+                    "🚀 Powered by AWOS Genesis • Autonomous Workforce Operating System"
                 }
+
             ]
         }
 

@@ -7,6 +7,7 @@ from awos_client import (
 )
 
 from execution_console import execution_console_block
+from execution_report import execution_report_block
 
 
 def register_listeners(app):
@@ -17,6 +18,7 @@ def register_listeners(app):
 
     @app.event("app_mention")
     def handle_mention(event, say):
+
         user = event["user"]
 
         say(
@@ -30,6 +32,7 @@ def register_listeners(app):
 
     @app.command("/awos")
     def handle_awos_command(ack, respond, command):
+
         ack()
 
         handle_command(
@@ -43,23 +46,42 @@ def register_listeners(app):
 
     @app.action("execute_mission")
     def execute_button(ack, body, respond):
+
         ack()
 
         mission_id = body["actions"][0]["value"]
 
         try:
 
-            # Fetch mission first
+            # Fetch Mission
             mission = get_mission(mission_id)
 
-            # Show beautiful execution console
+            # -------------------------------
+            # Show Live Timeline
+            # -------------------------------
+
             respond(
-                text="🧠 AWOS Execution Console",
+                text="🚀 AWOS Live Mission Timeline",
                 blocks=execution_console_block(mission)
             )
 
-            # Execute mission
-            execute_mission(mission_id)
+            # -------------------------------
+            # Execute Mission
+            # -------------------------------
+
+            result = execute_mission(mission_id)
+
+            # -------------------------------
+            # Show Final Report
+            # -------------------------------
+
+            respond(
+                text="✅ Mission Execution Completed",
+                blocks=execution_report_block(
+                    mission,
+                    result
+                )
+            )
 
         except Exception as e:
 
@@ -75,6 +97,7 @@ def register_listeners(app):
 
     @app.action("view_details")
     def details_button(ack, body, respond):
+
         ack()
 
         mission_id = body["actions"][0]["value"]
@@ -169,6 +192,7 @@ def register_listeners(app):
 
     @app.action("delete_mission")
     def delete_button(ack, body, respond):
+
         ack()
 
         mission_id = body["actions"][0]["value"]
@@ -178,8 +202,7 @@ def register_listeners(app):
             delete_mission(mission_id)
 
             respond(
-                text=
-                "🗑 Mission deleted successfully."
+                text="🗑 Mission deleted successfully."
             )
 
         except Exception as e:

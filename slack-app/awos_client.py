@@ -74,3 +74,14 @@ def execute_mission(mission_id):
     response.raise_for_status()
 
     return response.json()
+
+def get_analytics():
+
+    response = requests.get(
+        f"{FASTAPI_URL}/analytics/",
+        timeout=TIMEOUT,
+    )
+
+    response.raise_for_status()
+
+    return response.json()
