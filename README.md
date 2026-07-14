@@ -339,7 +339,7 @@ Slack Response
 
 # 📄 License
 
-This project is developed for academic and educational purposes.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
