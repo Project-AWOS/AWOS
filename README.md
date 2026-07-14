@@ -203,27 +203,31 @@ Responsible for:
 
 ---
 
-# 🚀 Installation
+### 🚀 Installation
 
-Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/Project-AWOS/AWOS.git
 ```
 
-Navigate to the backend
+---
+
+### Backend Setup
+
+Navigate to the backend:
 
 ```bash
 cd AWOS/awos-core
 ```
 
-Install dependencies
+Install dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Run the application
+Run the backend:
 
 ```bash
 python app/main.py
@@ -236,6 +240,37 @@ python -m uvicorn app.main:app --reload
 ```
 
 ---
+
+### Slack App Setup
+
+Open a new terminal and navigate to the Slack application:
+
+```bash
+cd AWOS/slack-app
+```
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the Slack application:
+
+```bash
+python app.py
+```
+
+---
+
+### Running the System
+
+To use AWOS end-to-end, run both services:
+
+1. **Backend (awos-core)**
+2. **Slack App (slack-app)**
+
+The Slack app communicates with the backend to execute missions and return results.
 
 # 🎯 Project Workflow
 
