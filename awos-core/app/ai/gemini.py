@@ -33,6 +33,9 @@ class GeminiClient(AIClient):
 
     def __init__(self):
 
+        print("Gemini key loaded:", bool(settings.GEMINI_API_KEY))
+        print("Gemini key length:", len(settings.GEMINI_API_KEY))
+        
         genai.configure(
             api_key=settings.GEMINI_API_KEY
         )
