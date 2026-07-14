@@ -43,3 +43,18 @@ Swagger UI
 ```
 http://localhost:8000/docs
 ```
+---
+
+# Example Mission
+
+Research Cyber Security
+
+Expected Output:
+
+- Analyze Mission
+- Generate AI Reasoning
+- Create Execution Plan
+- Search GitHub Repositories
+- Return Relevant Results
+
+Status: Verified ✅

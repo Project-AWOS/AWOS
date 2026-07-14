@@ -271,3 +271,49 @@ The execution completed successfully with:
 - AI Agent execution
 - Mission plan generation
 - GitHub MCP integration
+
+---
+
+# Final Workflow
+
+User
+
+↓
+
+Slack
+
+↓
+
+FastAPI Backend
+
+↓
+
+Analyzer
+
+↓
+
+Classifier
+
+↓
+
+Reasoner (Gemini AI)
+
+↓
+
+Planner
+
+↓
+
+Research Agent
+
+↓
+
+GitHub MCP
+
+↓
+
+GitHub Repository Search
+
+↓
+
+Results Returned to User
