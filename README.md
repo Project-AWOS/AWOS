@@ -3,6 +3,10 @@
 > Transforming Slack into an AI-powered autonomous workforce using Multi-Agent AI, FastAPI, LangGraph, Gemini, and Model Context Protocol (MCP).
 
 ---
+# Demo Link
+https://youtu.be/i-6P13aRaIs?si=I0wmR2cbZ8rFpxPt
+
+---
 
 # 📌 Overview
 
