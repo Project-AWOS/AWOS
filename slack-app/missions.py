@@ -71,6 +71,7 @@ def missions_block(missions):
                             "text": f"*📌 Mission*\n{mission['title']}"
                         },
 
+                        
                         {
                             "type": "mrkdwn",
                             "text": f"*🎯 Objective*\n{mission['objective']}"
@@ -113,9 +114,10 @@ def missions_block(missions):
                             "style": "primary",
                             "text": {
                                 "type": "plain_text",
-                                "text": "🌐 Open GitHub"
+                                "text": "▶ Execute"
                             },
-                            "url": "https://github.com/search?q=cybersecurity+projects&type=repositories"
+                            "value": mission["mission_id"],
+                            "action_id": "execute_mission"
                         },
 
                         {
