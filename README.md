@@ -49,11 +49,9 @@ When a user submits a request in Slack, AWOS performs the following workflow:
                        │
                        ▼
                 Slack Application
-                    (Lokesh)
                        │
                        ▼
                  AWOS Core API
-                    (Johney)
                        │
                        ▼
                   Mission Pipeline
@@ -74,7 +72,6 @@ When a user submits a request in Slack, AWOS performs the following workflow:
                        │
                        ▼
                  GitHub MCP Server
-                  (Manaswitha)
                        │
                        ▼
                   GitHub Services
@@ -197,12 +194,12 @@ Responsible for:
 
 # 👥 Team Members
 
-| Name | Role |
-|------|------|
-| Johney | AWOS Core Architect & AI Orchestration Lead |
-| Lokesh | Slack Integration Developer |
-| Manaswitha | GitHub MCP Developer |
-| Devaj | Documentation & QA Engineer |
+| Name       | Role                                        |
+| ---------- | ------------------------------------------- |
+| Johney     | AWOS Core Architect & AI Orchestration Lead |
+| Lokesh     | Slack Integration Developer                 |
+| Manaswitha | GitHub MCP Developer                        |
+| Devaj      | Documentation & QA Engineer                 |
 
 ---
 
