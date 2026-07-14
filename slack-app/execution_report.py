@@ -3,13 +3,29 @@ from utils import current_time
 
 def execution_report_block(mission, result):
 
+    plan = result["execution_plan"]
+
+    steps = ""
+
+    for step in plan["steps"]:
+        steps += (
+            f"• *Step {step['order']}*\n"
+            f"🤖 {step['agent']} Agent\n"
+            f"➡ {step['action']}\n\n"
+        )
+
+    tools = ""
+
+    for tool in plan["tools"]:
+        tools += f"• {tool}\n"
+
     return [
 
         {
             "type": "header",
             "text": {
                 "type": "plain_text",
-                "text": "✅ AWOS Mission Execution Report"
+                "text": "📄 AWOS Execution Report"
             }
         },
 
@@ -18,7 +34,7 @@ def execution_report_block(mission, result):
             "elements": [
                 {
                     "type": "mrkdwn",
-                    "text": f"⏰ {current_time()} • Mission Completed"
+                    "text": f"⏰ {current_time()} • ✅ Execution Completed"
                 }
             ]
         },
@@ -43,12 +59,12 @@ def execution_report_block(mission, result):
 
                 {
                     "type": "mrkdwn",
-                    "text": "*🏁 Status*\nCompleted"
+                    "text": f"*🔥 Priority*\n{mission['priority']}"
                 },
 
                 {
                     "type": "mrkdwn",
-                    "text": "*🤖 Workflow*\n5/5 Agents Finished"
+                    "text": "*🏁 Status*\nCompleted"
                 }
 
             ]
@@ -63,11 +79,8 @@ def execution_report_block(mission, result):
             "text": {
                 "type": "mrkdwn",
                 "text":
-                "👑 CEO Agent          ✅ Completed\n"
-                "🔬 Research Agent     ✅ Completed\n"
-                "🧠 Reasoner           ✅ Completed\n"
-                "👨‍💻 Engineer          ✅ Completed\n"
-                "🧪 QA Agent           ✅ Completed"
+                f"*📝 AI Summary*\n\n"
+                f"{plan['summary']}"
             }
         },
 
@@ -76,11 +89,54 @@ def execution_report_block(mission, result):
         },
 
         {
+            "type": "header",
+            "text": {
+                "type": "plain_text",
+                "text": "🤖 Execution Workflow"
+            }
+        },
+
+        {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": f"*📄 Execution Result*\n```{result}```"
+                "text": steps
             }
+        },
+
+        {
+            "type": "divider"
+        },
+
+        {
+            "type": "header",
+            "text": {
+                "type": "plain_text",
+                "text": "🛠 AI Tools Used"
+            }
+        },
+
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": tools
+            }
+        },
+
+        {
+            "type": "divider"
+        },
+
+        {
+            "type": "context",
+            "elements": [
+                {
+                    "type": "mrkdwn",
+                    "text":
+                    "🚀 Powered by AWOS Genesis • Demo Mode"
+                }
+            ]
         }
 
     ]
