@@ -1,0 +1,20 @@
+import anyio
+
+from app.agents.engineer import EngineerAgent
+
+
+async def main():
+
+    engineer = EngineerAgent()
+
+    result = await engineer.execute(
+        repo_name="awos-full-demo",
+        description="Complete engineering workflow",
+        owner="manaswitha7",
+    )
+
+    print(result.model_dump())
+
+
+if __name__ == "__main__":
+    anyio.run(main)

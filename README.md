@@ -1,252 +1,321 @@
-# AWOS - Autonomous Workforce Operating System
+# 🚀 AWOS - Autonomous Workforce Operating System
 
-> **An AI workforce, not just an AI assistant.**
-
-AWOS is a multi-agent AI platform built for the **Slack Agent Builder Challenge 2026**. Instead of relying on a single AI assistant, AWOS dynamically creates specialized AI agents that collaborate, communicate, and complete complex tasks inside Slack using **Model Context Protocol (MCP)**.
+> Transforming Slack into an AI-powered autonomous workforce using Multi-Agent AI, FastAPI, LangGraph, Gemini, and Model Context Protocol (MCP).
 
 ---
 
-## 🚀 Overview
+# 📌 Overview
 
-AWOS transforms Slack into an intelligent workspace where AI agents function like a real team.
+AWOS (Autonomous Workforce Operating System) is an AI-powered multi-agent platform that enables users to accomplish complex tasks by simply providing a goal in Slack.
 
-A user provides a high-level objective, and AWOS:
-
-- Analyzes the request
-- Creates the required AI specialists
-- Assigns responsibilities
-- Coordinates collaboration
-- Uses MCP to access external tools
-- Delivers the final result in Slack
+Instead of relying on a single chatbot, AWOS dynamically creates specialized AI agents such as a CEO, Project Manager, Researcher, Engineer, and QA Reviewer. These agents collaborate, delegate work, communicate with external tools through MCP, and deliver a complete solution while keeping the user involved through approval checkpoints.
 
 ---
 
-## ✨ Features
+# ❗ Problem Statement
 
-- 🤖 Dynamic AI Agent Creation
-- 👥 Multi-Agent Collaboration
-- 🧠 AI Debate & Decision Making
-- 📌 Human Approval Workflow
-- 💾 Shared Project Memory
-- 📊 Live Progress Tracking
-- 🔍 Explainable AI Decisions
-- 🔗 Secure MCP Tool Integration
+Traditional AI assistants perform isolated tasks but cannot collaborate like a real workforce.
+
+Modern software development requires multiple specialists working together, coordinating tasks, accessing external tools, and making collaborative decisions.
+
+AWOS solves this problem by creating an autonomous AI workforce capable of planning, reasoning, executing, and validating tasks collaboratively inside Slack.
 
 ---
 
-## 🏗️ Architecture
+# ✅ Solution
+
+When a user submits a request in Slack, AWOS performs the following workflow:
+
+1. Receives the user request.
+2. Creates a new mission.
+3. Analyzes the objective.
+4. Classifies the task.
+5. Uses Gemini AI for reasoning and planning.
+6. Generates an execution workflow using LangGraph.
+7. Creates specialized AI agents.
+8. Connects to external tools through MCP.
+9. Collects results.
+10. Sends the final response back to Slack.
+
+---
+
+# 🏗 System Architecture
 
 ```text
-                Slack Workspace
+                     User
                        │
-                Slack Bolt App
+                       ▼
+                  Slack Workspace
                        │
-                AWOS Orchestrator
+                       ▼
+                Slack Application
+                    (Lokesh)
+                       │
+                       ▼
+                 AWOS Core API
+                    (Johney)
+                       │
+                       ▼
+                  Mission Pipeline
                        │
         ┌──────────────┼──────────────┐
-        │              │              │
-    Agent Factory   Memory      Workflow Engine
-        │
- ┌──────┼─────────────────────────────┐
- │      │        │        │          │
-CEO     PM   Research  Engineer      QA
-        │
-        ▼
-      MCP Client
-        │
-      MCP Server
-        │
- ┌──────┼───────────────┬──────────────┐
- │      │               │              │
-GitHub SQLite      Python Tools   File System
+        ▼              ▼              ▼
+    Analyzer      Classifier     Planner
+                       │
+                       ▼
+              Gemini Reasoning Engine
+                       │
+                       ▼
+                LangGraph Workflow
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+      CEO          Researcher      Engineer
+                       │
+                       ▼
+                 GitHub MCP Server
+                  (Manaswitha)
+                       │
+                       ▼
+                  GitHub Services
+                       │
+                       ▼
+                  QA Validation
+                       │
+                       ▼
+                 Response to Slack
 ```
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠 Technology Stack
 
-### Backend
+## Backend
 
-- Python 3.11+
+- Python
 - FastAPI
-- Uvicorn
 
-### Slack
+## Artificial Intelligence
+
+- Google Gemini API
+- LangGraph
+
+## Communication
 
 - Slack Bolt SDK
-- Slack SDK
-- Block Kit
+- Slack Block Kit
 
-### AI
+## External Tool Integration
 
-- Google Gemini API (Free Tier)
-- LangGraph (or Custom Agent Orchestrator)
+- Model Context Protocol (MCP)
 
-### MCP
-
-- Model Context Protocol (Python SDK)
-
-### Database
+## Database
 
 - SQLite
 
-### Version Control
+## Version Control
 
-- Git & GitHub
+- Git
+- GitHub
 
 ---
 
-## 📂 Project Structure
+# 📁 Repository Structure
 
 ```text
 AWOS/
 │
-├── app/
-│   ├── agents/
-│   ├── orchestrator/
-│   ├── slack/
-│   ├── mcp/
-│   ├── database/
-│   ├── utils/
-│   ├── config.py
-│   └── main.py
-│
+├── awos-core/
+├── slack-app/
+├── mcp-server/
 ├── docs/
-├── demo/
 ├── tests/
-├── requirements.txt
-├── README.md
-├── .env.example
-└── docker-compose.yml
+├── assets/
+├── scripts/
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+# 📦 Modules
 
-### Clone the repository
+## AWOS Core
+
+Responsible for:
+
+- FastAPI Backend
+- Mission API
+- Analyzer
+- Classifier
+- Planner
+- Gemini Integration
+- LangGraph Workflow
+- AI Agent Orchestration
+
+---
+
+## Slack Application
+
+Responsible for:
+
+- Slack Commands
+- Slack Events
+- User Messages
+- Approval Buttons
+- Slack UI
+
+---
+
+## GitHub MCP Server
+
+Responsible for:
+
+- GitHub Authentication
+- Repository Management
+- File Management
+- Pull Requests
+- MCP Tool APIs
+
+---
+
+## Documentation & QA
+
+Responsible for:
+
+- Project Documentation
+- Architecture Documentation
+- User Guide
+- API Documentation
+- Testing
+- Bug Reports
+- Demo Preparation
+- Presentation
+
+---
+
+# 👥 Team Members
+
+| Name | Role |
+|------|------|
+| Johney | AWOS Core Architect & AI Orchestration Lead |
+| Lokesh | Slack Integration Developer |
+| Manaswitha | GitHub MCP Developer |
+| Devaj | Documentation & QA Engineer |
+
+---
+
+# 🚀 Installation
+
+Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/AWOS.git
-cd AWOS
+git clone https://github.com/Project-AWOS/AWOS.git
 ```
 
-### Create a virtual environment
+Navigate to the backend
 
 ```bash
-python -m venv .venv
+cd AWOS/awos-core
 ```
 
-### Activate
-
-**Windows**
+Install dependencies
 
 ```bash
-.venv\Scripts\activate
+python -m pip install -r requirements.txt
 ```
 
-**Linux/macOS**
+Run the application
 
 ```bash
-source .venv/bin/activate
+python app/main.py
 ```
 
-### Install dependencies
+or
 
 ```bash
-pip install -r requirements.txt
+python -m uvicorn app.main:app --reload
 ```
 
 ---
 
-## ▶️ Run the Project
+# 🎯 Project Workflow
 
-Start FastAPI
-
-```bash
-uvicorn app.main:app --reload
+```text
+User
+   │
+   ▼
+Slack
+   │
+   ▼
+Mission Created
+   │
+   ▼
+Analyzer
+   │
+   ▼
+Classifier
+   │
+   ▼
+Gemini Reasoning
+   │
+   ▼
+Planner
+   │
+   ▼
+LangGraph Workflow
+   │
+   ▼
+AI Agents
+   │
+   ▼
+GitHub MCP
+   │
+   ▼
+QA Validation
+   │
+   ▼
+Slack Response
 ```
 
-Start the Slack app
+---
 
-```bash
-python app/slack/app.py
-```
+# 📊 Current Project Status
 
-Start the MCP Server
-
-```bash
-python app/mcp/server.py
-```
+- ✅ Project Structure Completed
+- ✅ Repository Initialized
+- ✅ Core Development Started
+- 🔄 Slack Integration In Progress
+- 🔄 GitHub MCP Development In Progress
+- 🔄 Documentation In Progress
+- ⏳ System Integration Pending
+- ⏳ Final Testing Pending
 
 ---
 
-## 💡 Example Workflow
+# 🔮 Future Scope
 
-**User Input**
-
-> Build an AI-powered healthcare application.
-
-AWOS automatically:
-
-1. Creates a CEO Agent
-2. Creates a Project Manager
-3. Creates a Research Agent
-4. Creates an Engineer
-5. Creates a QA Reviewer
-6. Uses MCP tools to gather information
-7. Coordinates all agents
-8. Delivers the final proposal in Slack
+- Multi-MCP Support
+- Autonomous Planning
+- Cloud Deployment
+- Enterprise Integrations
+- Multi-LLM Support
+- Advanced Agent Collaboration
 
 ---
 
-## 📅 Development Timeline
+# 📄 License
 
-| Day | Goal                                   |
-| --- | -------------------------------------- |
-| 1   | Project setup, Slack app, MCP skeleton |
-| 2   | AWOS Orchestrator & Agent Factory      |
-| 3   | Core AI Agents                         |
-| 4   | MCP Tool Integration                   |
-| 5   | Agent Communication                    |
-| 6   | Memory & Approval Workflow             |
-| 7   | Block Kit UI & Progress Dashboard      |
-| 8   | Testing & Bug Fixes                    |
-| 9   | Demo Video & Final Submission          |
+This project is developed for academic and educational purposes.
 
 ---
 
-## 👥 Team
+# 🙌 Acknowledgements
 
-| Module                        | Owner         |
-| ----------------------------- | ------------- |
-| Slack UI & Integration        | Team Member 1 |
-| AWOS Orchestrator & Agents    | Team Member 2 |
-| MCP Server & Tools            | Team Member 3 |
-| Testing, Documentation & Demo | Team Member 4 |
+Developed as part of the **AWOS (Autonomous Workforce Operating System)** project by:
 
----
-
-## 🎯 Hackathon
-
-**Slack Agent Builder Challenge 2026**
-
-**Track:** New Slack Agent
-
-**Primary Technology:** Model Context Protocol (MCP)
-
----
-
-## 🌟 Vision
-
-AWOS is more than a chatbot—it is an **Autonomous Workforce Operating System** where intelligent AI agents collaborate like a real team to solve complex problems. By combining Slack, MCP, and multi-agent orchestration, AWOS demonstrates a possible future of enterprise collaboration.
-
----
-
-## 📄 License
-
-This project is developed for the **Slack Agent Builder Challenge 2026**.
-
-```
-
-```
+- Johney
+- Lokesh
+- Manaswitha
+- Devaj
